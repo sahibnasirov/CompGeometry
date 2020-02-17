@@ -1,0 +1,77 @@
+<div class="entry-content e-content">
+<p><img style="background-image: none; margin: 0px; padding-left: 0px; padding-right: 0px; display: inline; padding-top: 0px; border: 0px;" title="image" alt="image" width="650" height="280" border="0" src="https://www.howtogeek.com/wp-content/uploads/2012/06/ximage351.png.pagespeed.gp+jp+jw+pj+ws+js+rj+rp+rw+ri+cp+md.ic.ci8pg579c9.png" onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"></p>
+<p>If you’re coming from Windows, the Linux file system structure can seem particularly alien. The C:\ drive and drive letters are gone, replaced by a / and cryptic-sounding directories, most of which have three letter names.</p>
+<p>The Filesystem Hierarchy Standard (FHS) defines the structure of file systems on Linux and other UNIX-like operating systems. However, Linux file systems also contain some directories that aren’t yet defined by the standard.</p>
+<div id="purch_N_C_0_1"><script type="text/javascript" data-pagespeed-no-defer="">pagespeed.lazyLoadImages.overrideAttributeFunctions();</script><script>tmntag.cmd.push(function(){tmntag.adTag('purch_N_C_0_1', false);});</script></div>	<div style="clear:both"></div>
+<h2>/ – The Root Directory</h2>
+<p>Everything on your Linux system is located under the / directory, known as the root directory. You can think of the / directory as being similar to the C:\ directory on Windows – but this isn’t strictly true, as Linux doesn’t have drive letters. While another partition would be located at D:\ on Windows, this other partition would appear in another folder under / on Linux.</p>
+<p><img style="background-image: none; padding-left: 0px; padding-right: 0px; display: inline; padding-top: 0px; border: 0px;" title="image" alt="image" width="650" height="600" border="0" src="https://www.howtogeek.com/wp-content/uploads/2012/06/ximage352.png.pagespeed.gp+jp+jw+pj+ws+js+rj+rp+rw+ri+cp+md.ic.iMgj_9YOVB.png" onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"></p>
+<h2>/bin – Essential User Binaries</h2>
+<p>The /bin directory contains the essential user binaries (programs) that must be present when the system is mounted in single-user mode. Applications such as Firefox are stored in /usr/bin, while important system programs and utilities such as the bash shell are located in /bin. The /usr directory may be stored on another partition – placing these files in the /bin directory ensures the system will have these important utilities even if no other file systems are mounted. The /sbin directory is similar – it contains essential system administration binaries.</p>
+<p><img style="background-image: none; margin: 0px; padding-left: 0px; padding-right: 0px; display: inline; padding-top: 0px; border: 0px;" title="image" alt="image" width="650" height="370" border="0" src="https://www.howtogeek.com/wp-content/uploads/2012/06/ximage353.png.pagespeed.gp+jp+jw+pj+ws+js+rj+rp+rw+ri+cp+md.ic.yYqcM22IOk.png" onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"></p>
+<h2>/boot – Static Boot Files</h2>
+<p>The /boot directory contains the files needed to boot the system – for example, the GRUB boot loader’s files and your Linux kernels are stored here. The boot loader’s configuration files aren’t located here, though – they’re in /etc with the other configuration files.</p>
+<h2>/cdrom – Historical Mount Point for CD-ROMs</h2>
+<p>The /cdrom directory isn’t part of the FHS standard, but you’ll still find it on Ubuntu and other operating systems. It’s a temporary location for CD-ROMs inserted in the system. However, the standard location for temporary media is inside the /media directory.</p>
+<h2>/dev – Device Files</h2>
+<p>Linux exposes devices as files, and the /dev directory contains a number of special files that represent devices. These are not actual files as we know them, but they appear as files – for example, /dev/sda represents the first SATA drive in the system. If you wanted to partition it, you could start a partition editor and tell it to edit /dev/sda.</p>
+<p>This directory also contains pseudo-devices, which are virtual devices that don’t actually correspond to hardware. For example, /dev/random produces random numbers. /dev/null is a special device that produces no output and automatically discards all input – when you pipe the output of a command to /dev/null, you discard it.</p>
+<p><img style="background-image: none; margin: 0px; padding-left: 0px; padding-right: 0px; display: inline; padding-top: 0px; border: 0px;" title="image" alt="image" width="650" height="370" border="0" src="https://www.howtogeek.com/wp-content/uploads/2012/06/ximage354.png.pagespeed.gp+jp+jw+pj+ws+js+rj+rp+rw+ri+cp+md.ic.rAPJUDB51O.png" onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"></p>
+<h2>/etc – Configuration Files</h2>
+<p>The /etc directory contains configuration files, which can generally be edited by hand in a text editor. Note that the /etc/ directory contains system-wide configuration files – user-specific configuration files are located in each user’s home directory.</p>
+<h2>/home – Home Folders</h2>
+<p>The /home directory contains a home folder for each user. For example, if your user name is bob, you have a home folder located at /home/bob. This home folder contains the user’s data files and user-specific configuration files. Each user only has write access to their own home folder and must obtain elevated permissions (become the root user) to modify other files on the system.</p>
+<p><img style="background-image: none; margin: 0px; padding-left: 0px; padding-right: 0px; display: inline; padding-top: 0px; border: 0px;" title="image" alt="image" width="650" height="300" border="0" src="https://www.howtogeek.com/wp-content/uploads/2012/06/ximage355.png.pagespeed.gp+jp+jw+pj+ws+js+rj+rp+rw+ri+cp+md.ic.vb3-dpFPCU.png" onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"></p>
+<h2>/lib – Essential Shared Libraries</h2>
+<p>The /lib directory contains libraries needed by the essential binaries in the /bin and /sbin folder. Libraries needed by the binaries in the /usr/bin folder are located in /usr/lib.</p>
+<h2>/lost+found – Recovered Files</h2>
+<p>Each Linux file system has a lost+found directory. If the file system crashes, a file system check will be performed at next boot. Any corrupted files found will be placed in the lost+found directory, so you can attempt to recover as much data as possible.</p>
+<h2>/media – Removable Media</h2>
+<p>The /media directory contains subdirectories where removable media devices inserted into the computer are mounted. For example, when you insert a CD into your Linux system, a directory will automatically be created inside the /media directory. You can access the contents of the CD inside this directory.</p>
+<h2>/mnt – Temporary Mount Points</h2>
+<p>Historically speaking, the /mnt directory is where system administrators mounted temporary file systems while using them. For example, if you’re mounting a Windows partition to perform some file recovery operations, you might mount it at /mnt/windows. However, you can mount other file systems anywhere on the system.</p>
+<h2>/opt – Optional Packages</h2>
+<p>The /opt directory contains subdirectories for optional software packages. It’s commonly used by proprietary software that doesn’t obey the standard file system hierarchy – for example, a proprietary program might dump its files in /opt/application when you install it.</p>
+<h2>/proc – Kernel &amp; Process Files</h2>
+<p>The /proc directory similar to the /dev directory because it doesn’t contain standard files. It contains special files that represent system and process information.</p>
+<p><img style="background-image: none; margin: 0px; padding-left: 0px; padding-right: 0px; display: inline; padding-top: 0px; border: 0px;" title="image" alt="image" width="650" height="300" border="0" src="https://www.howtogeek.com/wp-content/uploads/2012/06/ximage356.png.pagespeed.gp+jp+jw+pj+ws+js+rj+rp+rw+ri+cp+md.ic.sERN7A2MVv.png" onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"></p>
+<h2>/root – Root Home Directory</h2>
+<p>The /root directory is the home directory of the root user. Instead of being located at /home/root, it’s located at /root. This is distinct from /, which is the system root directory.</p>
+<h2>/run – Application State Files</h2>
+<p>The /run directory is fairly new, and gives applications a standard place to store transient files they require like sockets and process IDs. These files can’t be stored in /tmp because files in /tmp may be deleted.</p>
+<h2>/sbin – System Administration Binaries</h2>
+<p>The /sbin directory is similar to the /bin directory. It contains essential binaries that are generally intended to be run by the root user for system administration.</p>
+<p><img style="background-image: none; margin: 0px; padding-left: 0px; padding-right: 0px; display: inline; padding-top: 0px; border: 0px;" title="image" alt="image" width="650" height="300" border="0" src="https://www.howtogeek.com/wp-content/uploads/2012/06/ximage357.png.pagespeed.gp+jp+jw+pj+ws+js+rj+rp+rw+ri+cp+md.ic.t4kJnD6t_A.png" onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"></p>
+<h2>/selinux – SELinux Virtual File System</h2>
+<p>If your Linux distribution uses SELinux for security (Fedora and Red Hat, for example), the /selinux directory contains special files used by SELinux. It’s similar to /proc. Ubuntu doesn’t use SELinux, so the presence of this folder on Ubuntu appears to be a bug.</p>
+<h2>/srv – Service Data</h2>
+<p>The /srv directory contains “data for services provided by the system.” If you were using the Apache HTTP server to serve a website, you’d likely store your website’s files in a directory inside the /srv directory.</p>
+<h2>/tmp – Temporary Files</h2>
+<p>Applications store temporary files in the /tmp directory. These files are generally deleted whenever your system is restarted and may be deleted at any time by utilities such as tmpwatch.</p>
+<h2>/usr – User Binaries &amp; Read-Only Data</h2>
+<p>The /usr directory contains applications and files used by users, as opposed to applications and files used by the system. For example, non-essential applications are located inside the /usr/bin directory instead of the /bin directory and non-essential system administration binaries are located in the /usr/sbin directory instead of the /sbin directory. Libraries for each are located inside the /usr/lib directory. The /usr directory also contains other directories – for example, architecture-independent files like graphics are located in /usr/share.</p>
+<p>The /usr/local directory is where locally compiled applications install to by default – this prevents them from mucking up the rest of the system.</p>
+<p><img style="background-image: none; margin: 0px; padding-left: 0px; padding-right: 0px; display: inline; padding-top: 0px; border: 0px;" title="image" alt="image" width="650" height="300" border="0" src="https://www.howtogeek.com/wp-content/uploads/2012/06/ximage358.png.pagespeed.gp+jp+jw+pj+ws+js+rj+rp+rw+ri+cp+md.ic.EWNpJnhqWt.png" onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);"></p>
+<h2>/var – Variable Data Files</h2>
+<p>The /var directory is the writable counterpart to the /usr directory, which must be read-only in normal operation. Log files and everything else that would normally be written to /usr during normal operation are written to the /var directory. For example, you’ll find log files in /var/log.</p>
+<hr>
+<p>For more detailed technical information about the Linux file system hierarchy, consult the <a href="http://www.pathname.com/fhs/pub/fhs-2.3.html">Filesystem Hierarchy Standard documentation</a>.</p>
+<style>
+			body #primary .entry-content ul#nextuplist {list-style-type: none;margin-left:0px;padding-left:0px;}
+			body #primary .entry-content ul#nextuplist li a {text-decoration:none;color:#1d55a9;}
+		</style>
+<div class="nextup">
+<span id="nextuplabel" style="font-weight: bold;
+					    font-size: 22px;
+					    color: #000;
+					    margin-bottom: 10px;
+					    display: block;">READ NEXT</span>
+<ul id="nextuplist">
+<li>› <a href="https://www.howtogeek.com/513003/how-to-use-netstat-on-linux/">How to Use netstat on Linux</a></li>
+<li>› <a href="https://www.howtogeek.com/657808/how-to-stream-the-daytona-500-without-cable/">How to Stream the Daytona 500 Without Cable</a></li>
+<li>› <a href="https://www.howtogeek.com/656526/what-does-%e2%80%9chmu%e2%80%9d-mean-and-how-do-you-use-it/">What Does “HMU” Mean, and How Do You Use It?</a></li>
+<li>› <a href="https://www.howtogeek.com/657251/how-to-enable-single-click-to-open-icons-on-windows-10/">How to Enable a Single Click to Open Icons on Windows 10</a></li>
+<li>› <a href="https://www.howtogeek.com/469890/how-to-troubleshoot-common-problems-with-apple-airpods/">How to Troubleshoot Common Problems with Apple AirPods</a></li>
+</ul>
+</div>
+</div>
